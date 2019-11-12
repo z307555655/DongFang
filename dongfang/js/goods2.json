@@ -1,0 +1,44 @@
+[
+
+    {
+        "1f": {
+            "detail": [{
+                    "name": "【产地直发】琯溪红心蜜柚精品A级 2粒装 约4.5斤",
+                    "price": "39.00",
+                    "url": "./img/imgaes/a7.webp",
+                    "goodsId": "aaasasdasd",
+                    "tip": "好用1"
+                },
+                {
+                    "name": "【京鲁远洋】 冷冻虾仁 250g 袋装 火锅食材",
+                    "price": "36.80",
+                    "url": "./img/imgaes/a8.webp",
+                    "goodsId": "a132123123asd",
+                    "tip": "好用1"
+                }
+            ]
+        }
+    },
+
+
+
+    {
+        "2f": {
+            "detail": [{
+                    "name": "【产地直发】琯溪红心蜜柚精品A级 2粒装 约4.5斤",
+                    "price": "39.00",
+                    "url": "./img/imgaes/a7.webp",
+                    "goodsId": "aaasasdasd",
+                    "tip": "好用1"
+                },
+                {
+                    "name": "【京鲁远洋】 冷冻虾仁 250g 袋装 火锅食材",
+                    "price": "36.80",
+                    "url": "./img/imgaes/a8.webp",
+                    "goodsId": "a132123123asd",
+                    "tip": "好用1"
+                }
+            ]
+        }
+    }
+]

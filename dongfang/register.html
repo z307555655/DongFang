@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="meta description">
+    <title></title>
+    <style>
+        .margin {
+            width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .main-bg {
+            width: 1920px;
+            height: 840px;
+            background: url(./img/bg-pc.jpg);
+            position: relative;
+        }
+        
+        .main-lg {
+            width: 1000px;
+            height: 568px;
+            background: white;
+            position: absolute;
+            right: 0;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            padding: 50px 100px;
+        }
+        
+        .main-lg h2 {
+            width: 800px;
+            height: 36px;
+            font-size: 30px;
+            text-align: center;
+            margin-top: 20px;
+            color: #1429a0;
+        }
+        
+        .main-lg p {
+            font-size: 22px;
+            color: #555;
+            margin: 20px 0 0 100px;
+        }
+        
+        .main-lg .inpStyle {
+            margin-left: 30px;
+            border-radius: 15px;
+            border: 2px solid #888;
+        }
+        
+        #btn {
+            width: 200px;
+            height: 50px;
+            border-radius: 15px;
+            background: #1429a0;
+            color: #fff;
+            font-size: 22px;
+            margin: 20px 0 0 200px;
+        }
+        
+        .error {
+            color: red;
+        }
+        
+        .success {
+            color: green;
+            border: 2px solid green;
+        }
+        
+        .inpStyle {
+            width: 277px;
+            height: 45px;
+            font-size: 22px;
+            line-height: 45px;
+            text-indent: 1em;
+        }
+    </style>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/public.css">
+</head>
+
+<body>
+
+    <!-- 这里是页头--开始 -->
+    <header>
+        <div class="margin">
+            <a href="index.html"><img src="./img/8.png"></a>
+        </div>
+    </header>
+    <!-- 这里是页头--结束 -->
+
+    <!-- 这里是主体--开始 -->
+    <main>
+        <div class="main-bg">
+            <div class="main-lg">
+                <form>
+                    <h2>注册</h2>
+                    <p>账&nbsp;&nbsp;号:<input type="text" id="user" class="inpStyle"><span class="error"></span></p>
+                    <p>密&nbsp;&nbsp;码:<input type="text" id="pass" class="inpStyle"><span class="error"></span></p>
+                    <p>确认密码:<input type="text" id="validatePass" class="inpStyle"><span class="error"></span></p>
+                    <p>手 机 号:<input type="text" id="phoneNum" class="inpStyle"><span class="error"></span></p>
+                    <p>邮&nbsp;&nbsp;箱:<input type="text" id="email" class="inpStyle"> <span class="error"></span></p>
+                    <input type="button" id="btn" value="提交注册信息">
+                </form>
+            </div>
+        </div>
+    </main>
+    <!-- 这里是主体--结束 -->
+
+    <!-- 这里是页脚-开始 -->
+    <footer>
+        <div class="margin">
+            <div class="r-img">
+                <a href="index.html"><img src="./img/7.png"></a>
+                <p><a href="#">Copyright © 2012–2019 上海东福网络科技有限公司. All Rights Reserved 沪ICP备16001915号</a></p>
+            </div>
+            <div class="l-guide">
+                <ul>
+                    <li class="li-m">购物指南</li>
+                    <li><a href="#">福利兑换指南</a></li>
+                    <li><a href="#">支付方式</a></li>
+                    <li><a href="#">购买指南</a></li>
+                    <li><a href="#">配送说明</a></li>
+                </ul>
+                <ul>
+                    <li class="li-m">售后服务</li>
+                    <li><a href="#">退货政策</a></li>
+                    <li><a href="#">常见问题</a></li>
+                </ul>
+                <ul>
+                    <li class="li-m">东福产品</li>
+                    <li><a href="#">东福超级卡</a></li>
+                    <li><a href="#">东福生日汇</a></li>
+                    <li><a href="#">东福乐影卡</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <!-- 这里是页脚-结束 -->
+
+</body>
+
+<script>
+    var oUser = document.getElementById('user');
+    var oPass = document.getElementById('pass');
+    var oValidatePass = document.getElementById('validatePass');
+    var oPhoneNum = document.getElementById('phoneNum');
+    var oEmail = document.getElementById('email');
+    var oBtn = document.getElementById('btn');
+
+    var u = p = p2 = ph = el = false;
+
+    oUser.onblur = function() {
+        // var sUser = oUser.value;
+        var reg = /^[\u2E80-\u9FFF\w-]{4,20}$/;
+        // console.log(sUser)
+        if (reg.test(this.value)) {
+            this.nextElementSibling.innerHTML = "用户名成功";
+            u = true;
+        } else {
+            this.nextElementSibling.innerHTML = "用户名仅支持中文、字母、数字、“-”“_”的组合，4-20个字符";
+            u = false;
+        }
+    }
+
+    oPass.onblur = function() {
+        var a = b = c = 0;
+        var aReg = /\d/;
+        if (aReg.test(this.value)) {
+            a = 1;
+        }
+        var bReg = /[a-zA-Z]/;
+        if (bReg.test(this.value)) {
+            b = 1;
+        }
+        var cReg = /\W/;
+        if (cReg.test(this.value)) {
+            c = 1;
+        }
+        switch (a + b + c) {
+            case 1:
+                this.nextElementSibling.innerHTML = "简单";
+                break;
+            case 2:
+                this.nextElementSibling.innerHTML = "一般";
+                break;
+            case 3:
+                this.nextElementSibling.innerHTML = "困难";
+                break;
+        }
+        p = true;
+
+        if (this.value === oValidatePass.value) {
+            oValidatePass.nextElementSibling.innerHTML = "一致";
+            p2 = true;
+        } else {
+            oValidatePass.nextElementSibling.innerHTML = "不一致"
+            p2 = false;
+        }
+    }
+
+    oValidatePass.onblur = function() {
+        if (this.value === oPass.value) {
+            this.nextElementSibling.innerHTML = "一致";
+            p2 = true;
+        } else {
+            this.nextElementSibling.innerHTML = "不一致";
+            p2 = false;
+        }
+    }
+
+    oPhoneNum.onblur = function() {
+        var reg = /^1[356789]\d{9}$/;
+        if (reg.test(this.value)) {
+            this.nextElementSibling.innerHTML = "手机号输入正确";
+            ph = true;
+        } else {
+            this.nextElementSibling.innerHTML = "手机号输入错误";
+            ph = false;
+        }
+    }
+    oEmail.onblur = function() {
+        var reg = /^[a-z0-9]{3,15}@[a-z0-9]{2,9}\.[a-z]{2,3}$/;
+        if (reg.test(this.value)) {
+            this.nextElementSibling.innerHTML = "邮箱输入正确";
+            el = true;
+        } else {
+            this.nextElementSibling.innerHTML = "邮箱输入错误";
+            el = false;
+        }
+    }
+
+
+    // -0--------------------------------------------------------------------------
+
+    if (window.localStorage.userArr) {
+        var array = JSON.parse(window.localStorage.userArr);
+    } else {
+        array = [];
+    }
+
+
+    oBtn.onclick = function() {
+        var useval = oUser.value;
+        var passval = oPass.value;
+        for (var i = 0; i < array.length; i++) {
+
+            if (useval == array[i].useval) {
+                alert("该账号已存在");
+                return;
+            }
+        }
+
+
+        if (u && p && p2 && ph && el) {
+            alert("注册成功")
+            var obj = {
+                useval: useval,
+                passval: passval,
+                score: 0
+            }
+            array.push(obj);
+            window.localStorage.userArr = JSON.stringify(array);
+            window.location.href = "./login.html";
+        } else {
+            alert("请填写完整信息")
+        }
+
+    }
+</script>
+
+</html>
