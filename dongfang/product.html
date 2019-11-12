@@ -14,6 +14,7 @@
         
         main .m-box {
             height: 605px;
+            z-index: 9999;
         }
         
         .margin {
@@ -154,6 +155,8 @@
             right: 0;
         }
         
+        .details {}
+        
         .details h3 {
             font-size: 24px;
         }
@@ -167,7 +170,6 @@
         .details .li-box3 {
             width: 610px;
             height: 45px;
-            background: #eee;
             font-size: 16px;
             font-family: "微软雅黑";
             line-height: 40px;
@@ -289,45 +291,47 @@
                     </div>
                 </div>
                 <div class="details">
-                    <h3>星农联合大闸蟹1888型礼券公蟹4.0两 母蟹3.0两 4对</h3>
-                    <ul>
-                        <li>
-                            <div class="li-box3">
-                                <label class="two-word">价格</label>
-                                <p>
-                                    <span class="pricce-unit">
+                    <!-- <div class="aaa">
+                        <h3>星农联合大闸蟹1888型礼券公蟹4.0两 母蟹3.0两 4对</h3>
+                        <ul>
+                            <li>
+                                <div class="li-box3">
+                                    <label class="two-word">价格</label>
+                                    <p>
+                                        <span class="pricce-unit">
                                         <i class="icon-fudou"></i>
                                     </span>
-                                </p>
-                                <b>
+                                    </p>
+                                    <b>
                                     <span class="price-span">218</span>
                                 </b>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="li-box3">
-                                <label>商品编号</label>
-                                <p>SX20190905003</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="li-box3">
-                                <label>选择数量</label>
-                                <p class="qigeming">
-                                    <a class="minus"></a>
-                                    <span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="li-box3">
+                                    <label>商品编号</label>
+                                    <p>SX20190905003</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="li-box3">
+                                    <label>选择数量</label>
+                                    <p class="qigeming">
+                                        <a class="minus"></a>
+                                        <span>
                                         <input type="text" value="1">   
                                     </span>
-                                    <a class="add-1"></a>
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="li-box3">
-                                <a class="add-cart">加入购物车</a>
-                            </div>
-                        </li>
-                    </ul>
+                                        <a class="add-1"></a>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="li-box3">
+                                    <a class="add-cart">加入购物车</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> -->
                 </div>
             </div>
 
@@ -374,8 +378,92 @@
     <!-- 这里是页脚-结束 -->
 
 </body>
+<script src="./js/ajaxgnp.js"></script>
+<script src="./js/cookie.js"></script>
 
 <script>
+    class dele {
+        constructor() {
+            this.url = "http://localhost/dongfang/js/goods.json";
+            this.details = document.querySelector(".details");
+            console.log(this.details);
+
+            this.load();
+        }
+        load() {
+            ajax({
+                url: this.url,
+                success: (res) => {
+                    // console.log(res);
+                    this.res = JSON.parse(res)
+                    console.log(this.res);
+
+                    this.getCookie();
+                }
+            })
+        }
+        getCookie() {
+            this.goods = getCookie("goods") ? JSON.parse(getCookie("goods")) : [];
+            this.diisplay();
+
+        }
+        diisplay() {
+            var str = "";
+            for (let i = 0; i < this.res.length; i++) {
+                for (let j = 0; j < this.goods.length; j++) {
+                    if (this.res[i].goodsId = this.goods[j].id) {
+                        str += `
+                        <div class="aaa">
+                        <h3>${this.res[i].name}</h3>
+                        <ul>
+                            <li>
+                                <div class="li-box3">
+                                    <label class="two-word">价格</label>
+                                    <p>
+                                        <span class="pricce-unit">
+                                        <i class="icon-fudou"></i>
+                                    </span>
+                                    </p>
+                                    <b>
+                                    <span class="price-span">${this.res[i].price}</span>
+                                </b>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="li-box3">
+                                    <label>商品编号</label>
+                                    <p>SX20190905003</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="li-box3">
+                                    <label>选择数量</label>
+                                    <p class="qigeming">
+                                        <a class="minus"></a>
+                                        <span>
+                                        <input type="text" value="1">   
+                                    </span>
+                                        <a class="add-1"></a>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="li-box3">
+                                    <a class="add-cart">加入购物车</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                        `
+                    }
+                }
+            }
+            this.details.innerHTML = str;
+        }
+    }
+    new dele();
+
+
     ;
     (function() {
 

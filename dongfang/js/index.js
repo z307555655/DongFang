@@ -8,14 +8,14 @@
 
             this.load();
 
-            // this.addEvent();
+            this.addEvent();
         }
         load() {
             // console.log(1)
             ajax({
                 url: this.url,
                 success: res => {
-                    console.log(res)
+                    // console.log(res)
                     this.res = JSON.parse(res);
                     // console.log(this.res)
                     this.display()
@@ -28,8 +28,8 @@
             var str = "";
             for (var i = 0; i < this.res.length; i++) {
                 str += `
-                        <li>
-                            <a href="#"><img src="${this.res[i].url}" title=""></a>
+                        <li index=${this.res[i].goodsId}>
+                            <a><img src="${this.res[i].url}" title="" class="add"></a>
                             <p class="tit-p"><a href="#" class="tit-a">${this.res[i].name}</a></p>
 
                             <p class="cont">
@@ -46,14 +46,18 @@
         addEvent() {
             var that = this;
             // 二、点击加入
+
             this.cont.addEventListener("click", function(eve) {
                 var e = eve || window.event;
                 var target = e.target || e.srcElement;
                 if (target.className == "add") {
+
+
                     // 1.点击时找到当前点击商品的货号
-                    that.id = target.parentNode.getAttribute("index");
+                    that.id = target.parentNode.parentNode.getAttribute("index")
+                    console.log();
                     // 2.准备存cookie
-                    // that.setCookie()
+                    that.setCookie()
                 }
             })
         }
